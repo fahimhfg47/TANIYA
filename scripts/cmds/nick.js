@@ -7,7 +7,7 @@ module.exports = {
     version: "2.0",
     author: LOCKED_AUTHOR,
     countDown: 5,
-    role: 2,
+    role: 1,
     shortDescription: {
       en: "Change nickname by reply"
     },
