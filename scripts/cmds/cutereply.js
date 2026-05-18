@@ -33,15 +33,15 @@ const last = {};
 // =======================
 const TRIGGERS = [
   {
-    words: ["farhan", "Farhan", "FARHAN", "ফারহান"],
-    text: "👉আমার বস♻️ 𝐑𝐉 𝐅𝐀𝐑𝐇𝐀𝐍 এখন বিজি আছে । তার ইনবক্সে এ মেসেজ দিয়ে রাখো ‎‎‎‎‎‎‎‎‎[https://www.facebook.com/MR.FARHAN.420] 🔰 ♪√বস ফ্রি হলে আসবে,! 😜🐒",
+    words: ["fahim", "Fahim", "FAHIM", "ফাহিম"],
+    text: "👉আমার বস♻️ 𝗙𝗔𝗛𝗜𝗠 এখন বিজি আছে । তার ইনবক্সে এ মেসেজ দিয়ে রাখো ‎‎‎‎‎‎‎‎‎[https://www.facebook.com/https://www.facebook.com/fahim.ahmed.raj.207] 🔰 ♪√বস ফ্রি হলে আসবে,! 😜🐒",
     images: [
-      "https://i.imgur.com/skOXv81.jpeg"
+      "https://i.imgur.com/mIGZnFl.jpeg"
     ]
   },
   {
-    words: ["@এৃঁলেৃঁ'ক্সৃঁ সিৃঁ'জুৃঁ'কাৃঁ", "@সিৃঁ'জুৃঁ সিৃঁ'জুৃঁ'কাৃঁ", "@সিৃঁ'জুৃঁ'কাৃঁ সিৃঁ'জুৃঁ"],
-    text: "-আমাকে মেনশন দিয়ে লাভ নাই- কারণ আমি একটা মেসেঞ্জার চ্যাট রোবট,🤖 আমাকে বানানো হয়েছে শুধুমাত্র আপনাদেরকে বিনোদনের জন্য, আমাকে বানিয়েছেন আমার বস ফারহান-😽🫶 [https://www.facebook.com/MR.FARHAN.420,!🌺",
+    words: ["@Mim Akther", "@Mahira Jahan Mitu", "@আঁইঁ লাঁভঁ ইঁউঁ জাঁনঁ"],
+    text: "-আমাকে মেনশন দিয়ে লাভ নাই- কারণ আমি একটা মেসেঞ্জার চ্যাট রোবট,🤖 আমাকে বানানো হয়েছে শুধুমাত্র আপনাদেরকে বিনোদনের জন্য, আমাকে বানিয়েছেন আমার বস ফাহিম-😽🫶 [https://www.facebook.com/fahim.ahmed.raj.077",
     images: [
       "https://i.imgur.com/rkrXNso.jpeg",
       "https://i.imgur.com/zrpFJUc.jpeg"
