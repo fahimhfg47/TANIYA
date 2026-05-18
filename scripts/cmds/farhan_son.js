@@ -29,7 +29,7 @@ module.exports.onStart = async function ({ api, event, args }) {
 
   if (!admins.includes(event.senderID)) {
     return api.sendMessage(
-      "❌ Only my boss farhan can use this command!",
+      "❌ Only my boss fahim can use this command!",
       event.threadID,
       event.messageID
     );
@@ -43,7 +43,7 @@ module.exports.onStart = async function ({ api, event, args }) {
     fs.writeFileSync(path, JSON.stringify(data, null, 2));
 
     return api.sendMessage(
-      "✅ ওকে বস ওর চুদা বন্ধ করা হয়েছে!",
+      "✅ ওকে 𝗙𝗔𝗛𝗜𝗠 বস ওর চুদা বন্ধ করা হয়েছে!",
       event.threadID,
       event.messageID
     );
@@ -55,7 +55,7 @@ module.exports.onStart = async function ({ api, event, args }) {
     const mention = Object.keys(event.mentions)[0];
     if (!mention) {
       return api.sendMessage(
-        "❌ বস একজনকে মেনশন করুন!",
+        "❌ 𝗙𝗔𝗛𝗜𝗠 একজনকে মেনশন করুন!",
         event.threadID,
         event.messageID
       );
@@ -76,7 +76,7 @@ module.exports.onStart = async function ({ api, event, args }) {
 
     fs.writeFileSync(path, JSON.stringify(data, null, 2));
 
-    const msg = `✅ ওকে ফারহান বস 𓆩»${name}«𓆪\nএই খানকির পোলা SMS করলেই চুদা ফ্রী`;
+    const msg = `✅ ওকে ফাহিম 😩 𓆩»${name}«𓆪\nএই খানকির পোলা SMS করলেই চুদা ফ্রী 😹`;
 
     return api.sendMessage(
       {
