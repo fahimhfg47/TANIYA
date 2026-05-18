@@ -1,95 +1,154 @@
-const fs = require("fs-extra");
-const request = require("request");
+const moment = require("moment-timezone");
+const axios = require("axios");
+const fs = require("fs");
 const path = require("path");
 
 module.exports = {
-  config: {
-    name: "owner",
-    version: "1.3.0",
-    author: "Farhan-Khan",
-    role: 0,
-    shortDescription: "Owner information with image",
-    category: "Information",
-    guide: {
-      en: "owner"
-    }
-  },
+config: {
+name: "owner",
+aliases: ["admin", "intro", "contact"],
+version: "4.0.0",
+author: "MR_FARHAN",
+role: 0,
+countDown: 5,
+shortDescription: {
+en: "Owner Information"
+},
+category: "owner"
+},
 
-  onStart: async function ({ api, event }) {
-    const ownerText = 
-`╔═══❖𝗢𝗪𝗡𝗘𝗥 𝗜𝗡𝗙𝗢❖═══╗
- 
- ‎⋆✦⋆⎯⎯⎯⎯⎯⎯⎯⎯⎯⋆✦⋆ 
-  [🤖]↓:𝐁𝐎𝐓→𝐀𝐃𝐌𝐈𝐍:↓
-  ➤ 『 𝐑𝐉-𝐅𝐀𝐑𝐇𝐀𝐍 』
- ‎⋆✦⋆⎯⎯⎯⎯⎯⎯⎯⎯⎯⋆✦⋆
+onStart: async function ({ api, event, usersData, threadsData, message }) {
+try {
 
-╠══❖『𝐁𝐈𝐎 𝐀𝐃𝐌𝐈𝐍』❖══╣
- ⊱༅༎😽💚༅༎⊱
+// ===== OWNER INFO =====  
+  const ownerName = "𝙼𝚁.𝙵𝙰𝙷𝙸𝙼";  
+  const ownerReligion = "𝙸𝚂𝙻𝙰𝙼";
+  const ownerRelation = "𝚂𝙸𝙽𝙶𝙻𝙴";
+  const ownerAddress = "𝙳𝙷𝙰𝙺𝙰.𝙼𝙸𝚁𝙿𝚄𝚁 2";
+  const ownerAge = "17";
+  
+  // ===== CONTACT =====  
+  const facebook = "fb.com/fahim.ahmed.raj.207";  
+  const whatsapp = "wa.me/+8801771240377";  
+  const telegram = "t.me/DEVIL_FAHIM_207";  
+  const youtube = "yb.com/@FAHIM-BOT";  
 
--আমি ভদ্র, বেয়াদব দুটোই 🥱✌️  
--তুমি যেটা ডি'জার্ভ করো, আমি সেটাই দেখাবো 🙂  
+  // ===== BOT INFO =====  
+  const botName = global.GoatBot?.config?.nickNameBot || "─꯭𓆩»‌‌𝆠꯭፝֟𝐒𝐈𝐙𝐔𝐊𝐀𝆠꯭፝֟𓆩𝆠፝𝐁𝐀𝐁𝐘𝆠꯭፝֟𝆠꯭፝֟𓆪";  
+  const prefix = global.GoatBot?.config?.prefix || "/";  
+  const totalCommands = global.GoatBot?.commands?.size || 0;  
 
-  ⊱༅༎😽💚༅༎⊱
-╠═════════════════╣
+  // ===== USERS & GROUPS =====  
+  const allUsers = await usersData.getAll();  
+  const allThreads = await threadsData.getAll();  
 
-[🏠]↓:𝐀𝐃𝐃𝐑𝐄𝐒𝐒:↓
-➤ 『 𝐂𝐇𝐔𝐀𝐃𝐀𝐍𝐆𝐀 』
-‎
-⋆✦⋆⎯⎯⎯⎯⎯⎯⎯⎯⎯⋆✦⋆
+  const totalUsers = allUsers.length;  
+  const totalGroups = allThreads.length;  
 
-[🕋]↓:𝐑𝐄𝐋𝐈𝐆𝐈𝐎𝐍:↓
-➤ 『 𝐈𝐒𝐋𝐀𝐌 』
+  // ===== UPTIME =====  
+  const uptime = process.uptime();  
 
-‎⋆✦⋆⎯⎯⎯⎯⎯⎯⎯⎯⎯⋆✦⋆
+  const days = Math.floor(uptime / 86400);  
+  const hours = Math.floor((uptime % 86400) / 3600);  
+  const minutes = Math.floor((uptime % 3600) / 60);  
+  const seconds = Math.floor(uptime % 60);  
 
-[🚻]↓:𝐆𝐄𝐍𝐃𝐄𝐑:↓
-➤ 『 𝐌𝐀𝐋𝐄 』
+  const uptimeText = `${days}d ${hours}h ${minutes}m ${seconds}s`;  
 
-‎⋆✦⋆⎯⎯⎯⎯⎯⎯⎯⎯⎯⋆✦⋆
+  // ===== TIME =====  
+  const now = moment().tz("Asia/Dhaka");  
+  const time = now.format("hh:mm:ss A");  
+  const date = now.format("DD/MM/YYYY");  
 
-[💞]↓:𝐑𝐄𝐋𝐀𝐓𝐈𝐎𝐍𝐒𝐇𝐈𝐏:↓
-➤ 『 𝐒𝐈𝐍𝐆𝐋𝐄 』
+  // ===== CACHE =====  
+  const cacheDir = path.join(__dirname, "cache");  
 
-‎⋆✦⋆⎯⎯⎯⎯⎯⎯⎯⎯⎯⋆✦⋆
+  if (!fs.existsSync(cacheDir)) {  
+    fs.mkdirSync(cacheDir, { recursive: true });  
+  }  
 
-[🧑‍🔧]↓:𝐖𝐎𝐑𝐊:↓
-➤ 『 𝐉𝐎𝐁 』
+  const videoPath = path.join(cacheDir, "owner.mp4");  
 
-‎⋆✦⋆═══🅲🅾🅽🆃🅰🅲🆃═══⋆✦⋆
+  // ===== VIDEO URL =====  
+  const videoUrl = "https://files.catbox.moe/545cye.mp4";  
 
-[📞] 𝗪𝗛𝗔𝗧𝗦𝗔𝗣𝗣
-➤ https://wa.me/+8801934640061
+  // ===== DOWNLOAD VIDEO =====  
+  const response = await axios({  
+    url: videoUrl,  
+    method: "GET",  
+    responseType: "stream"  
+  });  
 
-[🌍] 𝐅𝐀𝐂𝐄𝐁𝐎𝐎𝐊 𝐈𝐃 (❶)
-➤ https://m.me/61560833120754
+  const writer = fs.createWriteStream(videoPath);  
 
-[🌍] 𝐅𝐀𝐂𝐄𝐁𝐎𝐎𝐊 𝐈𝐃 (❷)
-➤ https://www.facebook.com/61560833120754
+  response.data.pipe(writer);  
 
-╚═══❖𝗧𝗛𝗔𝗡𝗞 𝗬𝗢𝗨❖═══╝`;
+  await new Promise((resolve, reject) => {  
+    writer.on("finish", resolve);  
+    writer.on("error", reject);  
+  });  
 
-    const cacheDir = path.join(__dirname, "cache");
-    const imgPath = path.join(cacheDir, "owner.jpg");
+  // ===== MESSAGE =====  
+  const msg = `
 
-    if (!fs.existsSync(cacheDir)) fs.mkdirSync(cacheDir);
+╔═══✦══════════✦═══╗
+║  🤖「 𝐎𝐖𝐍𝐄𝐑 𝐏𝐀𝐍𝐄𝐋 」🤖 ║
+╚═══✦══════════✦═══╝
 
-    const imgLink = "https://i.imgur.com/T8IQ8lb.jpeg";
+┏━━━━━━━━━━━━━━━━━━┓
+┃ 👑 𝙽𝙰𝙼𝙴:「 ${ownerName} 」
+┃ 🕋 𝚁𝙴𝙻𝙸𝙶𝙸𝙾𝙽:「 ${ownerReligion} 」
+┃ 💞 𝚁𝙴𝙻𝙰𝚃𝙸𝙾𝙽:「 ${ownerRelation} 」
+┃ 🏠 𝙰𝙳𝙳𝚁𝙴𝚂𝚂:「 ${ownerAddress} 」
+┃ 🎂 𝙰𝙶𝙴:「 ${ownerAge} 」
+┃ 🟢 𝙰𝙲𝚃𝙸𝚅𝙴:「 24/7 」
+┗━━━━━━━━━━━━━━━━━━┛
 
-    const send = () => {
-      api.sendMessage(
-        {
-          body: ownerText,
-          attachment: fs.createReadStream(imgPath)
-        },
-        event.threadID,
-        () => fs.unlinkSync(imgPath),
-        event.messageID
-      );
-    };
+╭─── 📱𝗖𝗢𝗡𝗧𝗔𝗖𝗧 𝗠𝗘 ───╮
+│ 🌐 ↓-𝐅𝐀𝐂𝐄𝐁𝐎𝐎𝐊-↓
+│ └─ ${facebook}
+│ 💬 ↓-𝐖𝐇𝐀𝐓𝐀𝐏𝐏-↓
+│ └─ ${whatsapp}
+│ ✈️ ↓-𝐓𝐄𝐋𝐄𝐆𝐑𝐀𝐌-↓
+│ └─ ${telegram}
+│ ▶️ ↓-𝐘𝐎𝐔𝐓𝐔𝐁𝐄-↓
+│ └─ ${youtube}
+╰───────────────────╯
 
-    request(encodeURI(imgLink))
-      .pipe(fs.createWriteStream(imgPath))
-      .on("close", send)
-  }
-};
+╭─── 🤖 𝗕𝗢𝗧 𝗗𝗘𝗧𝗔𝗜𝗟𝗦 ───╮
+│ ⚡ 𝐍𝐀𝐌𝐄: ${botName}
+│ 👥 𝐔𝐒𝐄𝐑𝐒:「 ${totalUsers} 」
+│ 💬 𝐆𝐑𝐎𝐔𝐏:「 ${totalGroups} 」
+│ 📦 𝐂𝐌𝐃𝐒:「 ${totalCommands} 」
+│ 🔰 𝐏𝐑𝐄𝐅𝐈𝐗:「 ${prefix} 」
+╰───────────────────╯
+╭────── 📅 𝗧𝗜𝗠𝗘 ──────╮
+│ 🗓️ 𝐃𝐀𝐓𝐄: ${date}
+│ ⏰ 𝐓𝐈𝐌𝐄: ${time}
+│ ⏳ 𝐔𝐏𝐓𝐈𝐌𝐄: ${uptimeText}
+╰──────────────────╯
+╔═══✦══════════✦═══╗
+║ 「 𝐓𝐇𝐀𝐍𝐊𝐒 𝐅𝐎𝐑 𝐔𝐒𝐈𝐍𝐆 」 ║
+╚═══✦══════════✦═══╝
+`;
+
+await message.reply({  
+    body: msg,  
+    attachment: fs.createReadStream(videoPath)  
+  });  
+
+  // ===== DELETE VIDEO =====  
+  setTimeout(() => {  
+    if (fs.existsSync(videoPath)) {  
+      fs.unlinkSync(videoPath);  
+    }  
+  }, 10000);  
+
+} catch (err) {  
+  console.log(err);  
+
+  return message.reply("❌ | Owner command error.");  
+}
+
+}
+}; 
