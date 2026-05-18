@@ -80,7 +80,7 @@ module.exports = {
         { icon: "💾", title: "MEMORY USAGE", value: `${memUsed} MB`, sub: `${memPercent}% of ${memTotal}MB`, color: "#00FF00", bar: memPercent },
         { icon: "📊", title: "CPU LOAD", value: `${cpuUsage.toFixed(1)}%`, sub: "Processor", color: "#FFAA00", bar: cpuUsage },
         { icon: "⚒️", title: "NODE VERSION", value: nodeVersion, sub: "Runtime", color: "#9D4EDD", bar: 100 },
-        { icon: "👑", title: "BOT OWNER", value: "FARHAN", sub: "Administrator", color: "#FFA500", bar: 100 }
+        { icon: "👑", title: "BOT OWNER", value: "FAHIM", sub: "Administrator", color: "#FFA500", bar: 100 }
       ];
 
       const boxW = (containerW - 120) / 2;
@@ -147,7 +147,7 @@ module.exports = {
       api.setMessageReaction("✅", event.messageID, () => {}, true);
       
       await message.reply({
-        body: "◢◤━━━━━━━━━━━━━━━━◥◣\n      𝗚𝗢𝗔𝗧 𝗕𝗢𝗧 𝗩𝟭 𝗨𝗣𝗧𝗜𝗠𝗘\n          𝗢𝗪𝗡𝗘𝗥:-𝗙𝗔𝗥𝗛𝗔𝗡\n◥◣━━━━━━━━━━━━━━━━◢◤",
+        body: "◢◤━━━━━━━━━━━━━━━━◥◣\n      𓆩»̶̶͓͓͓̽̽̽𝆠꯭፝֟ᴍᴜꜱɪᴄ_ʙᴏᴛ𝆠꯭፝֟𝆠꯭፝֟𓆪🎀🎧 𝗕𝗢𝗧 𝗩𝟭 𝗨𝗣𝗧𝗜𝗠𝗘\n          𝗢𝗪𝗡𝗘𝗥:-𝗙𝗔𝗛𝗜𝗠\n◥◣━━━━━━━━━━━━━━━━◢◤",
         attachment: fs.createReadStream(filePath)
       });
 
