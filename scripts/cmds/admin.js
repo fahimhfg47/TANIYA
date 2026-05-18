@@ -35,7 +35,7 @@ module.exports = {
 
 		// ✅ Owners (যারা add/remove করতে পারবে)
 		const OWNER = [
-			"61573366160918",
+			"61589439339903",
 			""
 		];
 
@@ -153,17 +153,18 @@ module.exports = {
 				);
 
 				const ownerBox =
-`╭━━━━━━〔 𝙾𝚆𝙽𝙴𝚁 〕━━━━━━╮
-│ 𝙽𝙰𝙼𝙴 :  𝙼𝚁_𝙵𝙰𝙷𝙸𝙼
-│ 𝚄𝙸𝙳 : ${OWNER.join(", ")}
-╰━━━━━━━━━━━━━━━━━━╯`;
+`‎⋆✦⋆⎯⎯⎯⎯[ 𝙾𝚆𝙽𝙴𝚁 ]⎯⎯⎯⎯⋆✦⋆
+┋╰‣𝙽𝙰𝙼𝙴: 「 𝙼𝚁_𝙵𝙰𝙷𝙸𝙼 」
+┋╰‣𝚄𝙸𝙳: 「${OWNER.filter(id => id !== "").join(" ")}」
+‎⋆✦⋆⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⋆✦⋆`;
 
 				const operatorsBox =
-`╭━━━〔 𝙾𝙿𝙴𝚁𝙰𝚃𝙾𝚁 𝙻𝙸𝚂𝚃 〕━━━╮
+`✿•≫──[ 𝙾𝙿𝙴𝚁𝙰𝚃𝙾𝚁 𝙻𝙸𝚂𝚃 ]──≪•✿
 ${getNames.length > 0
-	? getNames.map(i => `│ • ${i.name} (${i.uid})`).join("\n")
+	 ? getNames.map(i => `┋╰‣𝙽𝙰𝙼𝙴: 「 ${i.name} 」   
+┋╰‣𝚄𝙸𝙳: 「 ${i.uid} 」`).join("\n")
 	: "│ No Operators Found"}
-╰━━━━━━━━━━━━━━━━━━╯`;
+✿•≫────────────────≪•✿`;
 
 				return message.reply(ownerBox + "\n\n" + operatorsBox);
 			}
