@@ -5,7 +5,7 @@ module.exports = {
     name: "join",
     aliases: ["addgc"],
     version: "1.6.1",
-    role: 2,
+    role: 0,
     author: OWNER_NAME,
     description: "Manage all groups: List, Leave, or Add yourself to any group.",
     category: "admin",
@@ -68,9 +68,7 @@ module.exports = {
 `╔═════════════════════╗
 ‎           🎮 𝐂𝐎𝐍𝐓𝐑𝐎𝐋 𝐏𝐀𝐍𝐄𝐋
 ‎╚═════════════════════╝
-‎🟢 𝐎𝐔𝐓 <𝐍𝐎> → 𝐋𝐄𝐀𝐕𝐄 𝐆𝐑𝐎𝐔𝐏
 ‎➕ 𝐀𝐃𝐃 <𝐍𝐎> → 𝐉𝐎𝐈𝐍 𝐆𝐑𝐎𝐔𝐏
-‎⛔ 𝐁𝐀𝐍 <𝐍𝐎> → 𝐁𝐀𝐍 𝐆𝐑𝐎𝐔𝐏
 ‎📋 𝐈𝐍𝐅𝐎 <𝐍𝐎>→ 𝐆𝐑𝐎𝐔𝐏 𝐃𝐄𝐓𝐀𝐈𝐋𝐒
 ‎╚═════════════════════╝`;
 
@@ -119,16 +117,6 @@ module.exports = {
       }
     }
 
-    // OUT
-    if (action === "out") {
-      try {
-        await api.removeUserFromGroup(api.getCurrentUserID(), targetID);
-        return message.reply(`✅ 𝐒𝐮𝐜𝐜𝐞𝐬𝐬𝐟𝐮𝐥𝐥𝐲 𝐋𝐞𝐟𝐭 𝐆𝐫𝐨𝐮𝐩:\n🆔 ${targetID}`);
-      } catch {
-        return message.reply("❌ 𝐂𝐚𝐧𝐧𝐨𝐭 𝐋𝐞𝐚𝐯𝐞 𝐆𝐫𝐨𝐮𝐩");
-      }
-    }
-
     // ADD
     if (action === "add") {
       try {
@@ -146,25 +134,18 @@ module.exports = {
           targetID
         );
 
-        return message.reply(`✅ ${userName} কে সফলভাবে গ্রুপে যোগ করা হয়েছে:\n🆔 ${targetID}`);
+        return message.reply(`╔═━━━✦🌟 𝐒𝐔𝐂𝐂𝐄𝐒𝐒 🌟✦━━━═╗ 
+▶ 𝐒𝐓𝐀𝐓𝐔𝐒 : 𝐀𝐂𝐂𝐄𝐒𝐒 𝐆𝐑𝐀𝐍𝐓𝐄𝐃 ✔
+ ✦━━━━━━━━━━━━━━━━━━━✦
+「 ${userName} 」
+ 
+✔ আপনাকে সফলভাবে গ্রুপে 𝐀𝐃𝐃 করা সম্পন্ন হয়েছে_♻️✅
+✦━━━━━━━━━━━━━━━━━━━✦
+𝐍𝐎𝐃𝐄 𝐈𝐃 :「 ${targetID} 」
+𝐒𝐄𝐂𝐔𝐑𝐈𝐓𝐘 : 𝐋𝐄𝐕𝐄𝐋 𝟎𝟏 𝐂𝐋𝐄𝐀𝐑
+╚═━━✦━━━━━━━━━━━━✦━━═╝`);
       } catch {
         return message.reply("❌ 𝐆𝐫𝐨𝐮𝐩 𝐀𝐝𝐝 𝐅𝐚𝐢𝐥𝐞𝐝");
-      }
-    }
-
-    // BAN
-    if (action === "ban") {
-      try {
-        const data = await threadsData.get(targetID);
-        if (!data.data) data.data = {};
-        data.data.banned = true;
-
-        await threadsData.set(targetID, data.data, "data");
-        await api.removeUserFromGroup(api.getCurrentUserID(), targetID);
-
-        return message.reply(`⛔ 𝐆𝐫𝐨𝐮𝐩 𝐁𝐚𝐧𝐧𝐞𝐝:\n🆔 ${targetID}`);
-      } catch {
-        return message.reply("❌ 𝐁𝐚𝐧 𝐅𝐚𝐢𝐥𝐞𝐝");
       }
     }
   }
