@@ -35,17 +35,17 @@ module.exports = {
     const input = event.body.toLowerCase().trim();
 
     const voiceMap = {
-      "magi": "https://files.catbox.moe/ecgpak.mp4",
-      "মাগি": "https://files.catbox.moe/ecgpak.mp4",
+      "magi": "https://files.catbox.moe/9co1zx.mp4",
+      "মাগি": "https://files.catbox.moe/63hyw2.mp4",
       
-      "খানকি": "https://files.catbox.moe/ecgpak.mp4",
-      "khanki": "https://files.catbox.moe/ecgpak.mp4",
+      "খানকি": "https://files.catbox.moe/qhtvsf.mp4",
+      "khanki": "https://files.catbox.moe/kje55j.mp4",
 
-      "farhan": "https://files.catbox.moe/tvpfee.mp3",
-      "ফারহান": "https://files.catbox.moe/tvpfee.mp3",
+      "fahim": "https://files.catbox.moe/e2nd1c.mp3",
+      "ফাহিম": "https://files.catbox.moe/91qnco.mp4",
 
-      "sizuka": "https://files.catbox.moe/3u6shs.mp3",
-      "সিজুকা": "https://files.catbox.moe/3u6shs.mp3",
+      "@Fahim Ahmed": "https://files.catbox.moe/84fp4p.mp3",
+      "mahi": "https://files.catbox.moe/3u6shs.mp3",
 
       "good night": "https://files.catbox.moe/i29m4q.mp3",
       "গুড নাইট": "https://files.catbox.moe/i29m4q.mp3",
