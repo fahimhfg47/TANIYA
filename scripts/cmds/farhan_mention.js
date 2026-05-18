@@ -77,38 +77,64 @@ module.exports = {
     const rawCaption = captions[Math.floor(Math.random() * captions.length)];
     const styledCaption = formatCaption(rawCaption);
 
-    // 🎵 RANDOM MP3
-    const audioLinks = [
-      "https://files.catbox.moe/m7urii.mp3",
-      "https://files.catbox.moe/c37puq.mp3",
-      "https://files.catbox.moe/x7krhm.mp3"
+    // 🎥 RANDOM VIDEO
+    const videoLinks = [
+      "https://files.catbox.moe/zah3gd.mp4",
+      "https://files.catbox.moe/dnuqtb.mp4",
+      "https://files.catbox.moe/euhh1j.mp4",
+      "https://files.catbox.moe/28zdh0.mp4",
+      "https://files.catbox.moe/u6uhih.mp4",
+      "https://files.catbox.moe/kjuygx.mp4",
+      "https://files.catbox.moe/agbbr7.mp4",
+      "https://files.catbox.moe/v0c93q.mp4",
+      "https://files.catbox.moe/vn4iiv.mp4",
+      "https://files.catbox.moe/lw4gip.mp4",
+      "https://files.catbox.moe/7dhh65.mp4",
+      "https://files.catbox.moe/t1o8nu.mp4",
+      "https://files.catbox.moe/53ki3x.mp4",
+      "https://files.catbox.moe/2riyds.mp4",
+      "https://files.catbox.moe/u2inzy.mp4",
+      "https://files.catbox.moe/zabqtx.mp4",
+      "https://files.catbox.moe/lvat8q.mp4",
+      "https://files.catbox.moe/8iohbn.mp4",
+      "https://files.catbox.moe/zs1v3i.mp4",
+      "https://files.catbox.moe/sdcjc6.mp4"
     ];
 
-    const randomAudio =
-      audioLinks[Math.floor(Math.random() * audioLinks.length)];
+    const randomVideo =
+      videoLinks[Math.floor(Math.random() * videoLinks.length)];
 
-    const filePath = path.join(__dirname, "cache", "mention.mp3");
+    const videoPath = path.join(__dirname, "cache", "mention.mp4");
 
     try {
 
-      const response = await axios({
-        url: randomAudio,
-        method: "GET",
-        responseType: "stream"
+      // 📩 FIRST: CAPTION ONLY
+      await message.reply({
+        body: styledCaption
       });
 
-      const writer = fs.createWriteStream(filePath);
+      // 🎥 THEN VIDEO (separate message)
+      setTimeout(async () => {
 
-      response.data.pipe(writer);
-
-      writer.on("finish", async () => {
-        await message.reply({
-          body: styledCaption,
-          attachment: fs.createReadStream(filePath)
+        const videoResponse = await axios({
+          url: randomVideo,
+          method: "GET",
+          responseType: "stream"
         });
 
-        fs.unlinkSync(filePath);
-      });
+        const videoWriter = fs.createWriteStream(videoPath);
+        videoResponse.data.pipe(videoWriter);
+
+        videoWriter.on("finish", async () => {
+
+          await message.reply({
+            attachment: fs.createReadStream(videoPath)
+          });
+
+          fs.unlinkSync(videoPath);
+        });
+
+      }, 2000);
 
     } catch (err) {
       console.log("Error sending admin reply:", err);
